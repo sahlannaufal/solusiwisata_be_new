@@ -20,6 +20,7 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+Route.post('/login', 'AuthController.login')
 // Routes untuk Paket Perjalanan
 Route.get('paket', 'PaketPerjalanansController.index')
 Route.post('paket', 'PaketPerjalanansController.store')
