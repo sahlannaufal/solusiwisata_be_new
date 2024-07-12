@@ -1,10 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import PaketPerjalanan from 'App/Models/PaketPerjalanan'
-import { extname } from 'path'
-import Helpers from '@ioc:Adonis/Core/Helpers';
 import Application from '@ioc:Adonis/Core/Application'
-import path from 'path';
-import Database from '@ioc:Adonis/Lucid/Database'
 import { string } from '@ioc:Adonis/Core/Helpers'
 
 export default class PaketPerjalanansController {
@@ -23,7 +19,7 @@ export default class PaketPerjalanansController {
 
         foto = request.file('foto', {
             size: '2mb',
-            extname: ['jpg','png','jpeg']
+            extnames: ['jpg','png','jpeg']
         })
 
         const nameFile = `${string.generateRandom(32)}.${foto.subtype}`
@@ -31,7 +27,7 @@ export default class PaketPerjalanansController {
             name:nameFile
         })
 
-        const newPaketPerjalanan = await PaketPerjalanan.create({
+        await PaketPerjalanan.create({
             nama: nama,
             destinasi: destinasi,
             waktu: waktu,

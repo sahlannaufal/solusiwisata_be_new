@@ -1,10 +1,6 @@
 import Application from '@ioc:Adonis/Core/Application'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Rental from 'App/Models/Rental'
-import { extname } from 'path'
-import Helpers from '@ioc:Adonis/Core/Helpers';
-import path from 'path';
-import Database from '@ioc:Adonis/Lucid/Database'
 import { string } from '@ioc:Adonis/Core/Helpers'
 
 export default class RentalsController {
@@ -23,7 +19,7 @@ export default class RentalsController {
 
         foto = request.file('foto', {
             size: '2mb',
-            extname: ['jpg','png','jpeg']
+            extnames: ['jpg','png','jpeg']
         })
 
         const nameFile = `${string.generateRandom(32)}.${foto.subtype}`
@@ -31,7 +27,7 @@ export default class RentalsController {
             name: nameFile
         })
 
-        const newRental = await Rental.create({
+        await Rental.create({
             merk: merk,
             jenis: jenis,
             harga: harga,

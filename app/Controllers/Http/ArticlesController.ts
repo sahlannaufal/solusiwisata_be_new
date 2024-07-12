@@ -1,10 +1,6 @@
 import Application from '@ioc:Adonis/Core/Application'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Article from 'App/Models/Article'
-import { extname } from 'path'
-import Helpers from '@ioc:Adonis/Core/Helpers';
-import path from 'path';
-import Database from '@ioc:Adonis/Lucid/Database'
 import { string } from '@ioc:Adonis/Core/Helpers'
 
 export default class ArticlesController {
@@ -23,7 +19,7 @@ export default class ArticlesController {
 
         foto = request.file('foto', {
             size: '2mb',
-            extname: ['jpg', 'jpeg', 'png']
+            extnames: ['jpg', 'jpeg', 'png']
         })
 
         const nameFile = `${string.generateRandom(32)}.${foto.subtype}`
@@ -31,7 +27,7 @@ export default class ArticlesController {
             name:nameFile
         })
 
-        const newArticle = await Article.create({
+        await Article.create({
             judul: judul,
             konten: konten,
             penulis: penulis,
@@ -73,7 +69,7 @@ export default class ArticlesController {
         })
         .firstOrFail()
         if(foto !== null) {
-            const nameFile = `${string.generateRandom(32)}-updated.${photo.subtype}`
+            const nameFile = `${string.generateRandom(32)}-updated.${foto.subtype}`
             await foto.move(Application.tmpPath('foto'), {
                 name:nameFile
             })
