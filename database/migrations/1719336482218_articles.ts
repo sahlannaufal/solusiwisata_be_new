@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.string('judul').notNullable()
       table.text('konten').notNullable()
       table.string('penulis').notNullable()
+      table.string('judul_foto').notNullable()
       table.string('foto').notNullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })

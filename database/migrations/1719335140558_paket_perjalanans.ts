@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.string('destinasi').notNullable()
       table.string('waktu').notNullable()
       table.string('harga').notNullable()
-      table.string('deskripsi').notNullable()
+      table.text('deskripsi').notNullable()
       table.string('foto').notNullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })

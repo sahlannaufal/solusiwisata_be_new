@@ -15,6 +15,9 @@ export default class Article extends BaseModel {
   public penulis: string
 
   @column()
+  public judul_foto: string
+
+  @column()
   public foto: string
 
   @column.dateTime({ autoCreate: true })

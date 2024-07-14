@@ -15,7 +15,7 @@ export default class ArticlesController {
     }
 
     public async store ({request, response}: HttpContextContract) {
-        let {judul, konten, penulis, foto} = request.body()
+        let {judul, konten, penulis, judul_foto, foto} = request.body()
 
         foto = request.file('foto', {
             size: '2mb',
@@ -31,6 +31,7 @@ export default class ArticlesController {
             judul: judul,
             konten: konten,
             penulis: penulis,
+            judul_foto: judul_foto,
             foto: `foto/${nameFile}`
         })
 
@@ -56,7 +57,7 @@ export default class ArticlesController {
 
     public async update({params, request, response}: HttpContextContract) {
         const {id} = params
-        let {judul, konten, penulis, foto} = request.body()
+        let {judul, konten, penulis, foto, judul_foto} = request.body()
 
         foto = request.file('foto', {
             size: '2mb',
@@ -78,13 +79,15 @@ export default class ArticlesController {
                 judul: judul,
                 konten: konten,
                 penulis: penulis,
+                judul_foto: judul_foto,
                 foto: `foto/${nameFile}`
             })
         } else {
             existingArticle.merge({
                 judul: judul,
                 konten: konten,
-                penulis: penulis
+                penulis: penulis,
+                judul_foto: judul_foto
             })
         }
 
