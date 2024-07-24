@@ -23,9 +23,13 @@ export default class PaketPerjalanansController {
         })
 
         const nameFile = `${string.generateRandom(32)}.${foto.subtype}`
-        await foto.move(Application.tmpPath('foto'), {
-            name:nameFile
+        const publicPath = Application.publicPath('foto')
+        await foto.move(publicPath, {
+            name: nameFile
         })
+        // await foto.move(Application.tmpPath('public/foto'), {
+        //     name:nameFile
+        // })
 
         await PaketPerjalanan.create({
             nama: nama,

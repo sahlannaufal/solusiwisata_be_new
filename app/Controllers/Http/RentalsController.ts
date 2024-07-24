@@ -23,9 +23,13 @@ export default class RentalsController {
         })
 
         const nameFile = `${string.generateRandom(32)}.${foto.subtype}`
-        await foto.move(Application.tmpPath('foto'), {
+        const publicPath = Application.publicPath('foto')
+        await foto.move(publicPath, {
             name: nameFile
         })
+        // await foto.move(Application.tmpPath('public/foto'), {
+        //     name: nameFile
+        // })
 
         await Rental.create({
             merk: merk,
